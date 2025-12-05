@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Johan Sanjines Portafolio</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <style>
+    /* Estilos para el portfolio mejorado */
+    .featured-project {
+      grid-column: 1 / -1;
+      max-width: 100%;
+      margin: 0 auto 40px auto;
+      position: relative;
+    }
+    
+    .featured-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+    
+    .featured-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+      transform: rotate(45deg);
+      transition: all 0.6s ease;
+      opacity: 0;
+    }
+    
+    .featured-card:hover::before {
+      animation: shine 1.5s ease-in-out;
+    }
+    
+    @keyframes shine {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
+    }
+    
+    .featured-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 60px rgba(102, 126, 234, 0.4);
+    }
+    
+    .featured-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .featured-image {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+    
+    .featured-image img {
+      width: 100%;
+      height: auto;
+      transition: transform 0.4s ease;
+    }
+    
+    .featured-image:hover img {
+      transform: scale(1.05);
+    }
+    
+    .featured-info {
+      color: white;
+    }
+    
+    .featured-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      backdrop-filter: blur(10px);
+    }
+    
+    .featured-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .featured-description {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+    
+    .featured-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+    
+    .tech-tag {
+      background: rgba(255,255,255,0.15);
+      padding: 6px 12px;
+      border-radius: 15px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      backdrop-filter: blur(10px);
+    }
+    
+    .featured-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      padding: 12px 25px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    
+    .featured-button:hover {
+      background: rgba(255,255,255,0.3);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    /* Estilos para los botones del hero */
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 50px;
+      align-items: center;
+      height: 100%;
+    }
+    
+    .hero-text {
+      z-index: 2;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 2;
+    }
+    
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 14px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+      border: 2px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      min-width: 220px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+    
+    .hero-btn:hover {
+      background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+      border-color: rgba(255,255,255,0.3);
+    }
+    
+    .hero-btn i {
+      font-size: 1.1rem;
+    }
+    
+    .hero-btn.portfolio-btn {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      box-shadow: 0 8px 25px rgba(240, 147, 251, 0.3);
+    }
+    
+    .hero-btn.portfolio-btn:hover {
+      background: linear-gradient(135deg, #e084f0 0%, #e04a5f 100%);
+      box-shadow: 0 15px 35px rgba(240, 147, 251, 0.4);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .featured-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .featured-title {
+        font-size: 1.8rem;
+      }
+      
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+      }
+      
+      .hero-buttons {
+        align-items: center;
+      }
+      
+      .hero-btn {
+        min-width: 280px;
+      }
+    }
+  </style>
+
+  <!-- =======================================================
+  * Template Name: iPortfolio
+  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+  * Updated: Jun 29 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header dark-background d-flex flex-column">
+    <i class="header-toggle d-xl-none bi bi-list"></i>
+
+    <div class="profile-img">
+      <img src="assets/img/my-profile-imgs.jpg" alt="" class="img-fluid rounded-circle">
+    </div>
+
+    <a href="index.html" class="logo d-flex align-items-center justify-content-center">
+      <!-- Uncomment the line below if you also wish to use an image logo -->
+      <!-- <img src="assets/img/logo.png" alt=""> -->
+      <h1 class="sitename">Johan Sanjines</h1>
+    </a>
+
+    <div class="social-links text-center">
+      <a href="https://www.linkedin.com/in/johan-antony-sanjines-marigorda-158b52161/" class="linkedin"><i class="bi bi-linkedin"></i></a>
+    </div>
+
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i>Home</a></li>
+        <li><a href="#about"><i class="bi bi-person navicon"></i> About</a></li>
+        <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
+        <li><a href="#portfolio"><i class="bi bi-images navicon"></i> Portfolio</a></li>
+        <li><a href="#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
+      </ul>
+    </nav>
+
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <img src="assets/img/hero-bgs.jpg" alt="" data-aos="fade-in" class="">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h2>Johan Sanjines</h2>
+            <p>I'm <span class="typed" data-typed-items="Project & Operations Specialist, Process Improvement, Process Automation, Data & GCP, MBA Candidate"></span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
+          </div>
+          
+          <div class="hero-buttons">
+            <a href="assets/videos/ENG Cvitae-JohanAntonySanjinesMarigorda.pdf" download class="hero-btn">
+              <i class="bi bi-download"></i>
+              DOWNLOAD CV ENGLISH
+            </a>
+            
+            <a href="assets/videos/Cvitae-JohanAntonySanjinesMarigorda.pdf" download class="hero-btn">
+              <i class="bi bi-download"></i>
+              DOWNLOAD CV SPANISH
+            </a>
+            
+            <a href="#portfolio" class="hero-btn portfolio-btn">
+              <i class="bi bi-arrow-right-circle"></i>
+              GO TO PORTFOLIO
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>About</h2>
+        <p>MBA candidate with 3+ years leading logistics projects in automation, data analysis, and process improvement. Skilled in Power BI, SAP MM, UiPath, AppSheet, and transitioning into tech roles like Project Manager or Cloud Ops.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4 justify-content-center">
+          <div class="col-lg-4">
+            <img src="assets/img/my-profile-imgs.jpg" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-8 content">
+            <h2>Automation Specialist & Cloud Operations Analyst</h2>
+            <p class="fst-italic py-3">
+              Automation and analytics specialist with hands-on experience in streamlining operations using Power BI, SAP, UiPath, and AppSheet. Focused on scalable solutions, data-driven decisions, and cloud transformation.
+            </p>
+            <div class="row">
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>7 Sept. 1997</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+51 974 740 921</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>Lima, Perú</span></li>
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>28</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Master</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>johan.sanginez@gmail.com</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
+                </ul>
+              </div>
+            </div>
+            <p class="py-3">
+              Passionate about continuous improvement, process automation, and digital transformation. My work philosophy blends analytical thinking, agile methodologies, and a strong results-oriented mindset. I'm comfortable leading projects that integrate tools like Power BI, AppSheet, SAP, UiPath, and cloud services such as AWS and GCP. I aim to create impact by optimizing operations and enabling data-driven decisions through simple, scalable, and user-focused tech solutions.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /About Section -->
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item">
+              <i class="bi bi-emoji-smile"></i>
+              <span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="1" class="purecounter"></span>
+              <p><strong>Project Done</strong> <span>Automation, BI, and Process Design</span></p>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item">
+              <i class="bi bi-journal-richtext"></i>
+              <span data-purecounter-start="0" data-purecounter-end="500" data-purecounter-duration="1" class="purecounter"></span>
+              <p><strong>Hours of Optimization</strong> <span>	Focused on Lean & Data-Driven Ops</span></p>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item">
+              <i class="bi bi-headset"></i>
+              <span data-purecounter-start="0" data-purecounter-end="3" data-purecounter-duration="1" class="purecounter"></span>
+              <p><strong>Industries Served</strong> <span>Logistics, Tech, RRHH</span></p>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item">
+              <i class="bi bi-people"></i>
+              <span data-purecounter-start="0" data-purecounter-end="5" data-purecounter-duration="1" class="purecounter"></span>
+              <p><strong>Team Members Led</strong> <span>Coordinated cross-functional teams in operations and tech</span></p>
+            </div>
+          </div><!-- End Stats Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Stats Section -->
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills section light-background">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Skills</h2>
+        <p>A sample of my most notable skills</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row skills-content skills-animation">
+
+          <div class="col-lg-6">
+
+            <div class="progress">
+              <span class="skill"><span>Power BI/Looker</span> <i class="val">80%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div><!-- End Skills Item -->
+
+            <div class="progress">
+              <span class="skill"><span>AWS/GCP</span> <i class="val">90%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div><!-- End Skills Item -->
+
+            <div class="progress">
+              <span class="skill"><span>SQL</span> <i class="val">75%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div><!-- End Skills Item -->
+
+          </div>
+
+          <div class="col-lg-6">
+
+            <div class="progress">
+              <span class="skill"><span>APPSHEET</span> <i class="val">100%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div><!-- End Skills Item -->
+
+            <div class="progress">
+              <span class="skill"><span>PYTHON</span> <i class="val">80%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div><!-- End Skills Item -->
+
+            <div class="progress">
+              <span class="skill"><span>DATA ETL</span> <i class="val">70</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div><!-- End Skills Item -->
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Skills Section -->
+
+    <!-- Resume Section -->
+    <section id="resume" class="resume section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Resume</h2>
+        <p>Driving operational excellence through process automation, data analytics, and digital transformation</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="resume-title">Sumary</h3>
+
+            <div class="resume-item pb-0">
+              <h4>Johan Sanjines</h4>
+              <p><em>MBA candidate with over three years' experience managing logistics initiatives focused on automation, data-driven insights, and operational efficiency. Proficient in Power BI, SAP MM, UiPath, and AppSheet, now leveraging this expertise to transition into technology-driven roles such as Project Management and Cloud Operations.</em></p>
+              <ul>
+                <li>Lima, Peru</li>
+                <li>(+51) 974-740-921</li>
+                <li>johan.sanginez@gmail.com</li>
+              </ul>
+            </div><!-- Edn Resume Item -->
+
+            <h3 class="resume-title">Education</h3>
+            <div class="resume-item">
+              <h4>Master in business administration</h4>
+              <h5>2025 - 2026</h5>
+              <p><em>Technological University of Peru (UTP), PE</em></p>
+              <p>MBA candidate with a Bachelor's in International Business, combining a strong business foundation with expertise in process optimization, automation, and data analytics to drive digital transformation initiatives.</p>
+            </div><!-- Edn Resume Item -->
+
+            <div class="resume-item">
+              <h4>Bachelor in Business administration</h4>
+              <h5>2016 - 2020</h5>
+              <p><em>Peruvian University of Applied Sciences (UPC), PE</em></p>
+              <p>Focused on global trade, business strategy, and operations management, while integrating process automation, data analytics, and digital transformation tools to drive operational efficiency.</p>
+            </div><!-- Edn Resume Item -->
+
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <h3 class="resume-title">Professional Experience</h3>
+            <div class="resume-item">
+              <h4>Senior Digital Projects Analyst | Cloud & Automation,</h4>
+              <h5>2023 - Present</h5>
+              <p><em>SAASA, Lima,Peru</em></p>
+              <ul>
+                <li>Lead end-to-end strategic projects leveraging automation, AI, and cloud technologies (AWS & GCP) to deliver on time, within budget, and aligned with business goals.</li>
+                <li>Manage cross-functional teams with Agile (Scrum/Kanban) and integrate cloud-based collaboration tools, increasing project implementation efficiency by 30%. </li>
+                <li>Design and deploy automation workflows, AI-driven solutions, and cloud architectures to reduce costs by up to 20% and streamline critical operations.</li>
+                <li>Develop and implement KPIs, real-time dashboards (Power BI, AppSheet), and cloud data pipelines to enhance visibility, decision-making, and scalability.</li>
+              </ul>
+            </div><!-- Edn Resume Item -->
+
+            <div class="resume-item">
+              <h4>Operations & Project Analyst | Process Automation & Data</h4>
+              <h5>2022 - 2023</h5>
+              <p><em>SAASA, Lima,Peru</em></p>
+              <ul>
+                <li>Led automation, AI, and cloud (AWS & GCP) initiatives to streamline critical processes, reduce man-hours, and boost operational efficiency across Peru, Mexico, and other regions.</li>
+                <li>Developed and automated strategic KPIs, dashboards, and reports using Power BI, AppSheet, SAP, and cloud data pipelines, enhancing visibility and decision-making.</li>
+                <li>Designed and deployed custom applications and AI-driven solutions to optimize workflows, improve data quality, and reduce execution time.</li>
+                <li>Managed end-to-end operational projects with Agile methodologies, training teams in automation tools and fostering a culture of continuous improvement.</li>
+              </ul>
+            </div><!-- Edn Resume Item -->
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Resume Section -->
+
+    <!-- Certifications Section -->
+<section id="certifications" class="portfolio section light-background">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Certifications</h2>
+    <p>A summary of my key certifications that validate my skills in technology and management.</p>
+  </div><!-- End Section Title -->
+
+  <div class="container">
+
+    <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
+
+      <!-- Bachelor Degree -->
+      <div class="col-lg-4 col-md-6 portfolio-item isotope-item">
+        <div class="portfolio-content h-100">
+          <img src="assets/certificados/bachelor-thumb.jpg" class="img-fluid" alt="Bachelor Degree">
+          <div class="portfolio-info">
+            <h4>Bachelor in Business Administration</h4>
+            <p>Peruvian University of Applied Sciences (UPC)</p>
+            <a href="assets/certificados/bachelor-thumb.jpg" title="View Certificate" data-gallery="certificados-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+            <a href="assets/certificados/BACHELOR_DEGREE.pdf" title="Download PDF" class="details-link" target="_blank"><i class="bi bi-download"></i></a>
+          </div>
+        </div>
+      </div><!-- End Certification Item -->
+
+      <!-- Data Analytics -->
+      <div class="col-lg-4 col-md-6 portfolio-item isotope-item">
+        <div class="portfolio-content h-100">
+          <img src="assets/certificados/data-analytics-thumb.jpg" class="img-fluid" alt="Data Analytics Certificate">
+          <div class="portfolio-info">
+            <h4>Data Analytics Certification</h4>
+            <p>Professional Data Analytics Program</p>
+            <a href="assets/certificados/data-analytics-thumb.jpg" title="View Certificate" data-gallery="certificados-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+            <a href="assets/certificados/DATA_ANALYTICS.pdf" title="Download PDF" class="details-link" target="_blank"><i class="bi bi-download"></i></a>
+          </div>
+        </div>
+      </div><!-- End Certification Item -->
+
+      <!-- Project Management -->
+      <div class="col-lg-4 col-md-6 portfolio-item isotope-item">
+        <div class="portfolio-content h-100">
+          <img src="assets/certificados/project-management-thumb.jpg" class="img-fluid" alt="Project Management Certificate">
+          <div class="portfolio-info">
+            <h4>Project Management Professional</h4>
+            <p>Project Management Institute</p>
+            <a href="assets/certificados/project-management-thumb.jpg" title="View Certificate" data-gallery="certificados-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+            <a href="assets/certificados/PROJECT_MANAGEMENT.pdf" title="Download PDF" class="details-link" target="_blank"><i class="bi bi-download"></i></a>
+          </div>
+        </div>
+      </div><!-- End Certification Item -->
+
+      <!-- SAP MM Expert -->
+      <div class="col-lg-4 col-md-6 portfolio-item isotope-item">
+        <div class="portfolio-content h-100">
+          <img src="assets/certificados/sap-mm-thumb.jpg" class="img-fluid" alt="SAP MM Expert User">
+          <div class="portfolio-info">
+            <h4>SAP MM Expert User</h4>
+            <p>SAP Materials Management</p>
+            <a href="assets/certificados/sap-mm-thumb.jpg" title="View Certificate" data-gallery="certificados-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+            <a href="assets/certificados/SAP_MM_EXPERT_USER.pdf" title="Download PDF" class="details-link" target="_blank"><i class="bi bi-download"></i></a>
+          </div>
+        </div>
+      </div><!-- End Certification Item -->
+
+      <!-- Warehouse Management -->
+      <div class="col-lg-4 col-md-6 portfolio-item isotope-item">
+        <div class="portfolio-content h-100">
+          <img src="assets/certificados/warehouse-thumb.jpg" class="img-fluid" alt="Warehouse Management Certificate">
+          <div class="portfolio-info">
+            <h4>Warehouse Management Systems</h4>
+            <p>Supply Chain & Logistics</p>
+            <a href="assets/certificados/warehouse-thumb.jpg" title="View Certificate" data-gallery="certificados-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+            <a href="assets/certificados/WAREHOUSE_MANAGEMENT.pdf" title="Download PDF" class="details-link" target="_blank"><i class="bi bi-download"></i></a>
+          </div>
+        </div>
+      </div><!-- End Certification Item -->
+
+      <!-- Excel Specialist -->
+      <div class="col-lg-4 col-md-6 portfolio-item isotope-item">
+        <div class="portfolio-content h-100">
+          <img src="assets/certificados/EXCEL_ESPECIALIST.png" class="img-fluid" alt="Excel Specialist Certificate">
+          <div class="portfolio-info">
+            <h4>Excel Specialist</h4>
+            <p>Microsoft Office Specialist</p>
+            <a href="assets/certificados/EXCEL_ESPECIALIST.png" title="View Certificate" data-gallery="certificados-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+          </div>
+        </div>
+      </div><!-- End Certification Item -->
+
+    </div><!-- End Portfolio Container -->
+
+  </div>
+
+</section><!-- /Certifications Section -->
+    
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio section light-background">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Portfolio</h2>
+        <p>A small sample in the form of a demo of the projects I've worked on and the workflows that can be performed.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+          <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+            <li data-filter="*" class="filter-active">All</li>
+            <li data-filter=".filter-app">App</li>
+            <li data-filter=".filter-branding">Automation</li>
+            <li data-filter=".filter-books">Dashboard</li>
+          </ul><!-- End Portfolio Filters -->
+
+          <!-- FEATURED PROJECT - Real Time Dashboard -->
+          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+            <div class="col-lg-12 portfolio-item isotope-item filter-books featured-project">
+              <div class="featured-card">
+                <div class="featured-content">
+                  <div class="featured-image">
+                    <img src="assets/videos/DASHBOARD-GCP.jpg" class="img-fluid" alt="Real Time Dashboard in Cloud">
+                  </div>
+                  <div class="featured-info">
+                    <div class="featured-badge">🌟 FEATURED PROJECT</div>
+                    <h4 class="featured-title">Real Time Dashboard in Cloud</h4>
+                    <p class="featured-description">
+                      Advanced cloud-based analytics platform with real-time data processing and visualization. 
+                      Complete integration from data capture to intelligent insights.
+                    </p>
+                    <div class="featured-tech">
+                      <span class="tech-tag">AppSheet</span>
+                      <span class="tech-tag">Make.com</span>
+                      <span class="tech-tag">BigQuery</span>
+                      <span class="tech-tag">Looker Studio</span>
+                      <span class="tech-tag">GCP</span>
+                    </div>
+                    <a href="assets/videos/DASHBOARD-GCP-VIDEO.mp4" title="Real Time Dashboard in Cloud" data-gallery="portfolio-gallery-books" class="featured-button glightbox preview-link">
+                      <i class="bi bi-play-circle"></i>
+                      Watch Demo
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End Featured Project -->
+          </div>
+
+          <!-- Regular Projects -->
+          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="300">
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+              <div class="portfolio-content h-100">
+                <img src="assets/videos/APP-SILLMAS-IMG.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>From form to signed PDF—automatically</h4>
+                  <p>Appsheet + Appscript + Automatic PDF generation</p>
+                  <a href="assets/videos/APP-SILLAS.mp4" title="From form to signed PDF—automatically" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi-play-circle"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+              <div class="portfolio-content h-100">
+                <img src="assets/videos/PROCESADOR-IMG.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>AI-PDF READER</h4>
+                  <p>PDF reader + AI-powered report automation</p>
+                  <a href="assets/videos/PROCESADOR-VIDEO-1.mp4" title="AI-PDF READER" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi-play-circle"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
+              <div class="portfolio-content h-100">
+                <img src="assets/videos/CCO-IMG.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>REAL TIME CCO</h4>
+                  <p>REAL TIME CCO - APPSHEET + APPSCRIPT</p>
+                  <a href="assets/videos/CCO-VIDEO.mp4" title="REAL TIME CCO" data-gallery="portfolio-gallery-books" class="glightbox preview-link"><i class="bi-play-circle"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+          </div><!-- End Portfolio Container -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Portfolio Section -->
+
+    
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p>Always up to date</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <ddiv class="col-lg-8 offset-lg-2">
+
+            <div class="info-wrap">
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+                <i class="bi bi-geo-alt flex-shrink-0"></i>
+                <div>
+                  <h3>Address</h3>
+                  <p>Av.Oscar R. Benavides 3046. Lima, Peru</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+                <i class="bi bi-telephone flex-shrink-0"></i>
+                <div>
+                  <h3>Call Me</h3>
+                  <p>+51 974 740 921</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                <i class="bi bi-envelope flex-shrink-0"></i>
+                <div>
+                  <h3>Email</h3>
+                  <p>johan.sanginez@gmail.com</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.9125733023147!2d-77.08294472588157!3d-12.049536141950442!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c949efb7de01%3A0x2c9c10cf1aff0c7e!2sAlto%20Colonial%2C%20Av.%20%C3%93scar%20R.%20Benavides%2C%20Lima%2007006!5e0!3m2!1ses!2spe!4v1755136353459!5m2!1ses!2spe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Contact Section -->
+
+  </main>
+
+  <footer id="footer" class="footer position-relative light-background">
+
+    <div class="container">
+      <div class="copyright text-center ">
+        <p>© <span>Copyright</span> <strong class="px-1 sitename"> <span>All Rights Reserved</span></p>
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        Designed by Johan Sanjines</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
